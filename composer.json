@@ -1,0 +1,13 @@
+{
+    "name": "pure-sol/ether-base",
+    "description": "Ether Base Package",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Mohammed Anwar",
+            "email": "m.anwar@pure-sol.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
