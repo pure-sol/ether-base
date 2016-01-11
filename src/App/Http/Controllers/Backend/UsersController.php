@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers;
+<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
 
 use Puresolcom\Etherbase\App\Http\Requests\CreateUserRequest;
 use Puresolcom\Etherbase\App\Http\Requests\UpdateUserRequest;

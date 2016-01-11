@@ -16,7 +16,7 @@ trait UserHasPermissionsTrait
         parent::boot();
 
         static::deleting(function($user) {
-            if (!method_exists(Config::get('auth.model'), 'bootSoftDeletingTrait')) {
+            if (!method_exists(Config::get('etherbase.auth.model'), 'bootSoftDeletingTrait')) {
                 // Repeat role->sync code attached from EntrustUserTrait::boot() as this boot()
                 // function overwrites it.
                 $user->roles()->sync([]);
@@ -34,7 +34,7 @@ trait UserHasPermissionsTrait
      */
     public function permissions()
     {
-        return $this->belongsToMany(Config::get('entrust.permission'), Config::get('entrust.permission_user_table'));
+        return $this->belongsToMany(Config::get('etherbase.entrust.permission'), Config::get('etherbase.entrust.permission_user_table'));
     }
 
     /**

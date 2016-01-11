@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Controllers;
+namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 

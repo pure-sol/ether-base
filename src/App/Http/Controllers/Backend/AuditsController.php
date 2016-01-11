@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers;
+<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
 
 use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
 use Puresolcom\Etherbase\App\Repositories\Criteria\Audit\AuditByCreatedDateDescending;
@@ -38,7 +38,7 @@ class AuditsController extends Controller {
 
         $page_title = trans('admin/audit/general.page.index.title');
         $page_description = trans('admin/audit/general.page.index.description');
-        $purge_retention = config('audit.purge_retention');
+        $purge_retention = config('etherbase.audit.purge_retention');
 
         $audits = $this->audit->pushCriteria(new AuditByCreatedDateDescending())->paginate(20);
 
@@ -49,7 +49,7 @@ class AuditsController extends Controller {
     {
         Audit::log(Auth::user()->id, trans('admin/audit/general.audit-log.category'), trans('admin/audit/general.audit-log.msg-purge'));
 
-        $purge_retention = config('audit.purge_retention');
+        $purge_retention = config('etherbase.audit.purge_retention');
         $purge_date = (new \DateTime())->modify("- $purge_retention day");
         $auditsToDelete = $this->audit->pushCriteria(new AuditCreatedBefore($purge_date))->all();
 

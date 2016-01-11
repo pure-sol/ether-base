@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers;
+<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
 
 use Puresolcom\Etherbase\App\Repositories\Criteria\Permission\PermissionsByNamesAscending;
 use Puresolcom\Etherbase\App\Repositories\PermissionRepository as Permission;
