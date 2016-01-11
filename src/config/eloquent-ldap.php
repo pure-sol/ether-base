@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'group_model' => env('LDAP_GROUP_MODEL', App\Models\Group::class),
+    'group_model' => env('LDAP_GROUP_MODEL', Puresolcom\Etherbase\App\Models\Group::class),
 
     /*
     |--------------------------------------------------------------------------

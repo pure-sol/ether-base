@@ -49,7 +49,7 @@
                     @foreach($perms as $perm)
                         <div class="checkbox">
                             <label>
-                                {!! Form::checkbox('perms[]', $perm->id, $role->hasPerm($perm), ( \App\Models\Permission::isForced($perm) || (!$perm->canBeAssigned()) )? ['disabled'] : null ) !!} {{ $perm->display_name }}
+                                {!! Form::checkbox('perms[]', $perm->id, $role->hasPerm($perm), ( \Puresolcom\Etherbase\App\Models\Permission::isForced($perm) || (!$perm->canBeAssigned()) )? ['disabled'] : null ) !!} {{ $perm->display_name }}
                             </label>
                         </div>
                     @endforeach
