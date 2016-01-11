@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\Providers;
+namespace Puresolcom\Etherbase\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
