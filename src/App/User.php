@@ -12,9 +12,8 @@ use Puresolcom\Etherbase\App\Models\Role;
 use Puresolcom\Etherbase\App\Traits\UserHasPermissionsTrait;
 use Auth;
 use Config;
-use Sroutier\EloquentLDAP\Contracts\EloquentLDAPUserInterface;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, EloquentLDAPUserInterface
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword;
     use EntrustUserTrait, UserHasPermissionsTrait {
@@ -232,7 +231,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         // If the auth_type is not explicitly set by the call function or module,
         // set it to the internal value.
         if (!array_key_exists('auth_type', $attributes) || ("" == ($attributes['auth_type'])) ) {
-            $attributes['auth_type'] = Config::get('etherbase.eloquent-ldap.label_internal');
+            $attributes['auth_type'] = Config::get('eloquent-ldap.label_internal');
         }
 
         // Call original create method from parent
@@ -255,7 +254,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @param array $attributes
      * @return void
      */
-    public function update(array $attributes = []) {
+    public function update(array $attributes = [], array $options = []) {
 
         if ( array_key_exists('first_name', $attributes) ) {
             $this->first_name = $attributes['first_name'];

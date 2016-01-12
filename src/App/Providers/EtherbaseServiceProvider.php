@@ -35,25 +35,20 @@ class EtherbaseServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot(\Illuminate\Foundation\Http\Kernel $httpKernel, \Illuminate\Routing\Router $router) {
+    public function boot(\Illuminate\Routing\Router $router) {
         include dirname(__DIR__) . '/Http/routes.php';
 
-        // Register middlewares
+
+        // Register middleware
+        $httpKernel = $this->app['Illuminate\Contracts\Http\Kernel'];
+
         foreach ($this->middleware as $middleware) {
-            $httpKernel->prependMiddleware($middleware);
+            $httpKernel->pushMiddleware($middleware);
         }
 
         foreach ($this->routeMiddleware as $key => $middleware) {
             $router->middleware($key, $middleware);
         }
-
-
-        // Loading Package specific config files
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/app.php', 'etherbase.app');
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/entrust.php', 'etherbase.entrust');
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/audit.php', 'etherbase.audit');
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/auth.php', 'etherbase.auth');
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/theme.php', 'etherbase.theme');
 
         // Loading views
         $this->loadViewsFrom(dirname(__DIR__) . '/resources/views', 'etherbase');
@@ -83,13 +78,19 @@ class EtherbaseServiceProvider extends ServiceProvider {
             'Entrust' => \Zizaco\Entrust\EntrustFacade::class,
         ];
 
+        // Loading Package specific config files
+        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/app.php', 'app');
+        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/entrust.php', 'entrust');
+        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/audit.php', 'audit');
+        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/auth.php', 'auth');
+        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/theme.php', 'theme');
+
         foreach ($providers as $provider) {
             $this->app->register($provider);
         }
 
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         foreach ($aliases as $alias => $class) {
-            $loader->alias($class, $alias);
+            \Illuminate\Foundation\AliasLoader::getInstance()->alias($alias, $class);
         }
     }
 

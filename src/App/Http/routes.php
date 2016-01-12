@@ -1,4 +1,5 @@
 <?php
+
 /*
   |--------------------------------------------------------------------------
   | Application Routes
@@ -11,28 +12,29 @@
  */
 
 Route::group(['namespace' => 'Puresolcom\Etherbase\App\Http\Controllers'], function() {
-    Route::group(['namespace' => 'Backend'], function() {
-        // Authentication routes...
-        Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
-        Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);
-        Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+    // Authentication routes...
+    Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+    Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);
+    Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 // Registration routes...
-        Route::get('auth/register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
-        Route::post('auth/register', ['as' => 'registerPost', 'uses' => 'Auth\AuthController@postRegister']);
+    Route::get('auth/register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
+    Route::post('auth/register', ['as' => 'registerPost', 'uses' => 'Auth\AuthController@postRegister']);
 // Password reset link request routes...
-        Route::get('password/email', ['as' => 'recover_password', 'uses' => 'Auth\PasswordController@getEmail']);
-        Route::post('password/email', ['as' => 'recover_passwordPost', 'uses' => 'Auth\PasswordController@postEmail']);
+    Route::get('password/email', ['as' => 'recover_password', 'uses' => 'Auth\PasswordController@getEmail']);
+    Route::post('password/email', ['as' => 'recover_passwordPost', 'uses' => 'Auth\PasswordController@postEmail']);
 // Password reset routes...
-        Route::get('password/reset/{token}', ['as' => 'reset_password', 'uses' => 'Auth\PasswordController@getReset']);
-        Route::post('password/reset', ['as' => 'reset_passwordPost', 'uses' => 'Auth\PasswordController@postReset']);
+    Route::get('password/reset/{token}', ['as' => 'reset_password', 'uses' => 'Auth\PasswordController@getReset']);
+    Route::post('password/reset', ['as' => 'reset_passwordPost', 'uses' => 'Auth\PasswordController@postReset']);
 // Registration terms
-        Route::get('faust', ['as' => 'faust', 'uses' => function() {
-                return view('faust');
-            }]);
+    Route::get('faust', ['as' => 'faust', 'uses' => function() {
+            return view('faust');
+        }]);
 
 // Application routes...
-        Route::get('/', ['as' => 'backslash', 'uses' => 'HomeController@index']);
-        Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
+    Route::get('/', ['as' => 'backslash', 'uses' => 'HomeController@index']);
+    Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+    Route::group(['namespace' => 'Backend'], function() {
 
 // Routes in this group must be authorized.
         Route::group(['middleware' => 'authorize'], function () {

@@ -17,7 +17,7 @@ trait PermissionHasUsersTrait
         parent::boot();
 
         static::deleting(function($permission) {
-            if (!method_exists(Config::get('etherbase.entrust.permission'), 'bootSoftDeletingTrait')) {
+            if (!method_exists(Config::get('entrust.permission'), 'bootSoftDeletingTrait')) {
                 // Repeat role->sync code attached from EntrustPermissionTrait::boot() as this boot()
                 // function overwrites it.
                 $permission->roles()->sync([]);
@@ -35,7 +35,7 @@ trait PermissionHasUsersTrait
      */
     public function users()
     {
-        return $this->belongsToMany(config('etherbase.auth.model', 'Puresolcom\Etherbase\App\User'), Config::get('etherbase.app.permission_user_table'));
+        return $this->belongsToMany(config('auth.model', 'Puresolcom\Etherbase\App\User'), Config::get('app.permission_user_table'));
     }
 
     /**
