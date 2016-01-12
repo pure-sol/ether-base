@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Events;
+namespace Etherbase\App\Events;
 
 abstract class Event
 {

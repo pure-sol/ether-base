@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
+namespace Etherbase\App\Http\Controllers\Backend;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

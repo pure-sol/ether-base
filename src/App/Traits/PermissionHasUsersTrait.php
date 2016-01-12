@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Traits;
+<?php namespace Etherbase\App\Traits;
 
 use Illuminate\Support\Facades\Config;
 
@@ -35,7 +35,7 @@ trait PermissionHasUsersTrait
      */
     public function users()
     {
-        return $this->belongsToMany(config('auth.model', 'Puresolcom\Etherbase\App\User'), Config::get('app.permission_user_table'));
+        return $this->belongsToMany(config('auth.model', 'Etherbase\App\User'), Config::get('app.permission_user_table'));
     }
 
     /**

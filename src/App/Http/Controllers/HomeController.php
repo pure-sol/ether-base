@@ -1,10 +1,10 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Controllers;
+namespace Etherbase\App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Puresolcom\Etherbase\App\Http\Requests;
-use Puresolcom\Etherbase\App\Http\Controllers\Controller;
+use Etherbase\App\Http\Requests;
+use Etherbase\App\Http\Controllers\Controller;
 use Flash;
 
 class HomeController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Providers;
+namespace Etherbase\App\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Puresolcom\Etherbase\App\Events\SomeEvent' => [
-            'Puresolcom\Etherbase\App\Listeners\EventListener',
+        'Etherbase\App\Events\SomeEvent' => [
+            'Etherbase\App\Listeners\EventListener',
         ],
     ];
 

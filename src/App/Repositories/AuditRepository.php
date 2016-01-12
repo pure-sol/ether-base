@@ -1,13 +1,13 @@
-<?php namespace Puresolcom\Etherbase\App\Repositories;
+<?php namespace Etherbase\App\Repositories;
 
 use Bosnadev\Repositories\Eloquent\Repository;
-use Puresolcom\Etherbase\App\Models\Audit;
+use Etherbase\App\Models\Audit;
 
 class AuditRepository extends Repository {
 
     public function model()
     {
-        return 'Puresolcom\Etherbase\App\Models\Audit';
+        return 'Etherbase\App\Models\Audit';
     }
 
     /**

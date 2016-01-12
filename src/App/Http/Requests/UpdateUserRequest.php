@@ -1,6 +1,6 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Requests;
+<?php namespace Etherbase\App\Http\Requests;
 
-use Puresolcom\Etherbase\App\Http\Requests\Request;
+use Etherbase\App\Http\Requests\Request;
 
 class UpdateUserRequest extends Request {
 

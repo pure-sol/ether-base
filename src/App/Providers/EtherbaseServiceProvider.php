@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Providers;
+namespace Etherbase\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
@@ -9,13 +9,13 @@ class EtherbaseServiceProvider extends ServiceProvider {
 
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Puresolcom\Etherbase\App\Http\Middleware\EncryptCookies::class,
+        \Etherbase\App\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Puresolcom\Etherbase\App\Http\Middleware\VerifyCsrfToken::class,
-        \Puresolcom\Etherbase\App\Http\Middleware\ThemeSelector::class,
-        \Puresolcom\Etherbase\App\Http\Middleware\WalledGarden::class,
+        \Etherbase\App\Http\Middleware\VerifyCsrfToken::class,
+        \Etherbase\App\Http\Middleware\ThemeSelector::class,
+        \Etherbase\App\Http\Middleware\WalledGarden::class,
     ];
 
     /**
@@ -24,10 +24,10 @@ class EtherbaseServiceProvider extends ServiceProvider {
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Puresolcom\Etherbase\App\Http\Middleware\Authenticate::class,
+        'auth' => \Etherbase\App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \Puresolcom\Etherbase\App\Http\Middleware\RedirectIfAuthenticated::class,
-        'authorize' => \Puresolcom\Etherbase\App\Http\Middleware\AuthorizeRoute::class,
+        'guest' => \Etherbase\App\Http\Middleware\RedirectIfAuthenticated::class,
+        'authorize' => \Etherbase\App\Http\Middleware\AuthorizeRoute::class,
     ];
 
     /**

@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Puresolcom\Etherbase\App\User::class, function ($faker) {
+$factory->define(Etherbase\App\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,

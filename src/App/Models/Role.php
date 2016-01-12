@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Models;
+<?php namespace Etherbase\App\Models;
 
 use Zizaco\Entrust\EntrustRole;
 

@@ -1,19 +1,19 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
+<?php namespace Etherbase\App\Http\Controllers\Backend;
 
-//use Puresolcom\Etherbase\App\Models\Route;
-use Puresolcom\Etherbase\App\Repositories\RouteRepository as Route;
-use Puresolcom\Etherbase\App\Repositories\PermissionRepository as Permission;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Route\RoutesWithPermissions;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Route\RoutesByPathAscending;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Route\RoutesByMethodAscending;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Route\RoutesWhereNameOrPathOrActionNameLike;
+//use Etherbase\App\Models\Route;
+use Etherbase\App\Repositories\RouteRepository as Route;
+use Etherbase\App\Repositories\PermissionRepository as Permission;
+use Etherbase\App\Repositories\Criteria\Route\RoutesWithPermissions;
+use Etherbase\App\Repositories\Criteria\Route\RoutesByPathAscending;
+use Etherbase\App\Repositories\Criteria\Route\RoutesByMethodAscending;
+use Etherbase\App\Repositories\Criteria\Route\RoutesWhereNameOrPathOrActionNameLike;
 
 use Illuminate\Http\Request;
-use Puresolcom\Etherbase\App\Http\Requests;
+use Etherbase\App\Http\Requests;
 use Flash;
-use Puresolcom\Etherbase\App\Libraries\Utils;
+use Etherbase\App\Libraries\Utils;
 use DB;
-use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
+use Etherbase\App\Repositories\AuditRepository as Audit;
 use Auth;
 
 class RoutesController extends Controller {
@@ -229,7 +229,7 @@ class RoutesController extends Controller {
     {
         Audit::log(Auth::user()->id, trans('admin/routes/general.audit-log.category'), trans('admin/routes/general.audit-log.msg-load'));
 
-        $nbRoutesLoaded = \Puresolcom\Etherbase\App\Models\Route::loadLaravelRoutes();
+        $nbRoutesLoaded = \Etherbase\App\Models\Route::loadLaravelRoutes();
 
         Flash::success( trans('admin/routes/general.status.loaded', ['number' => $nbRoutesLoaded]) );
         return redirect('/admin/routes');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App;
+namespace Etherbase\App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -8,8 +8,8 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait as EntrustUserTrait;
-use Puresolcom\Etherbase\App\Models\Role;
-use Puresolcom\Etherbase\App\Traits\UserHasPermissionsTrait;
+use Etherbase\App\Models\Role;
+use Etherbase\App\Traits\UserHasPermissionsTrait;
 use Auth;
 use Config;
 
@@ -57,7 +57,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function audits()
     {
-        return $this->hasMany('Puresolcom\Etherbase\App\Models\Audit');
+        return $this->hasMany('Etherbase\App\Models\Audit');
     }
 
     /**

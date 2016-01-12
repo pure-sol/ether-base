@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Repositories\Criteria\Permission;
+<?php namespace Etherbase\App\Repositories\Criteria\Permission;
 
 use Bosnadev\Repositories\Criteria\Criteria;
 use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;

@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Puresolcom\Etherbase\App\User;
-use Puresolcom\Etherbase\App\Models\Role;
-use Puresolcom\Etherbase\App\Models\Permission;
-use Puresolcom\Etherbase\App\Models\Route;
+use Etherbase\App\User;
+use Etherbase\App\Models\Role;
+use Etherbase\App\Models\Permission;
+use Etherbase\App\Models\Route;
 
 class ProductionSeeder extends Seeder
 {

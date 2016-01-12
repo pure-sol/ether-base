@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Jobs;
+namespace Etherbase\App\Jobs;
 
 use Illuminate\Bus\Queueable;
 

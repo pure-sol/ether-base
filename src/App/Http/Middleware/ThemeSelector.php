@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Middleware;
+namespace Etherbase\App\Http\Middleware;
 
 use Closure;
 use Theme;

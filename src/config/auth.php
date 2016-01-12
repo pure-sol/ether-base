@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Puresolcom\Etherbase\App\User::class,
+    'model' => Etherbase\App\User::class,
 
     /*
     |--------------------------------------------------------------------------

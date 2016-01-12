@@ -11,7 +11,7 @@
   |
  */
 
-Route::group(['namespace' => 'Puresolcom\Etherbase\App\Http\Controllers'], function() {
+Route::group(['namespace' => 'Etherbase\App\Http\Controllers'], function() {
     // Authentication routes...
     Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'loginPost', 'uses' => 'Auth\AuthController@postLogin']);

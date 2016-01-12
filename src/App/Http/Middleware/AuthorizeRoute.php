@@ -1,11 +1,11 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Middleware;
+namespace Etherbase\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Route as LaravelRoute;
-use Puresolcom\Etherbase\App\Models\Route as AppRoute;
+use Etherbase\App\Models\Route as AppRoute;
 use Log;
 
 class AuthorizeRoute

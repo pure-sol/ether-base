@@ -1,15 +1,15 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
+namespace Etherbase\App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 
-use Puresolcom\Etherbase\App\Http\Requests;
-use Puresolcom\Etherbase\App\Http\Controllers\Controller;
+use Etherbase\App\Http\Requests;
+use Etherbase\App\Http\Controllers\Controller;
 use Flash;
 use Auth;
 
-use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
+use Etherbase\App\Repositories\AuditRepository as Audit;
 
 class TestController extends Controller
 {

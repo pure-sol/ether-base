@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Libraries;
+<?php namespace Etherbase\App\Libraries;
 
 
 class Utils {

@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => Puresolcom\Etherbase\App\User::class,
+        'model'  => Etherbase\App\User::class,
         'key' => '',
         'secret' => '',
     ],

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Puresolcom\Etherbase\App\User;
-use Puresolcom\Etherbase\App\Models\Permission;
+use Etherbase\App\User;
+use Etherbase\App\Models\Permission;
 
 class DevelopmentSeeder extends Seeder
 {

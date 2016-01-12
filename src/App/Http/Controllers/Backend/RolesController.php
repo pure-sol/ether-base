@@ -1,15 +1,15 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
+<?php namespace Etherbase\App\Http\Controllers\Backend;
 
-use Puresolcom\Etherbase\App\Repositories\Criteria\Role\RolesWithPermissions;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Role\RolesByNamesAscending;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Role\RolesWhereDisplayNameOrDescriptionLike;
-use Puresolcom\Etherbase\App\Repositories\RoleRepository as Role;
-use Puresolcom\Etherbase\App\Repositories\PermissionRepository as Permission;
-use Puresolcom\Etherbase\App\Repositories\UserRepository as User;
+use Etherbase\App\Repositories\Criteria\Role\RolesWithPermissions;
+use Etherbase\App\Repositories\Criteria\Role\RolesByNamesAscending;
+use Etherbase\App\Repositories\Criteria\Role\RolesWhereDisplayNameOrDescriptionLike;
+use Etherbase\App\Repositories\RoleRepository as Role;
+use Etherbase\App\Repositories\PermissionRepository as Permission;
+use Etherbase\App\Repositories\UserRepository as User;
 use Illuminate\Http\Request;
 use Flash;
 use DB;
-use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
+use Etherbase\App\Repositories\AuditRepository as Audit;
 use Auth;
 
 class RolesController extends Controller {
@@ -68,7 +68,7 @@ class RolesController extends Controller {
         $page_description = trans('admin/roles/general.page.show.description', ['name' => $role->name]); // "Displaying role";
 
         $perms = $this->permission->all();
-//        $userCollection = \Puresolcom\Etherbase\App\User::take(10)->get(['id', 'first_name', 'last_name', 'username'])->lists('full_name_and_username', 'id');
+//        $userCollection = \Etherbase\App\User::take(10)->get(['id', 'first_name', 'last_name', 'username'])->lists('full_name_and_username', 'id');
 //        $userList = [''=>''] + $userCollection->all();
 
         return view('admin.roles.show', compact('role', 'perms', 'page_title', 'page_description'));
@@ -82,7 +82,7 @@ class RolesController extends Controller {
         $page_title = trans('admin/roles/general.page.create.title'); // "Admin | Role | Create";
         $page_description = trans('admin/roles/general.page.create.description'); // "Creating a new role";
 
-        $role = new \Puresolcom\Etherbase\App\Models\Role();
+        $role = new \Etherbase\App\Models\Role();
         $perms = $this->permission->all();
 
         return view('admin.roles.create', compact('role', 'perms', 'page_title', 'page_description'));
@@ -139,7 +139,7 @@ class RolesController extends Controller {
 
         $perms = $this->permission->all();
 //        $rolePerms = $role->perms();
-//        $userCollection = \Puresolcom\Etherbase\App\User::take(10)->get(['id', 'first_name', 'last_name', 'username'])->lists('full_name_and_username', 'id');
+//        $userCollection = \Etherbase\App\User::take(10)->get(['id', 'first_name', 'last_name', 'username'])->lists('full_name_and_username', 'id');
 //        $userList = [''=>''] + $userCollection->all();
 
         return view('admin.roles.edit', compact('role', 'perms', 'page_title', 'page_description'));

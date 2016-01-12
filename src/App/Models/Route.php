@@ -1,7 +1,7 @@
-<?php namespace Puresolcom\Etherbase\App\Models;
+<?php namespace Etherbase\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Puresolcom\Etherbase\App\Libraries\Utils;
+use Etherbase\App\Libraries\Utils;
 
 class Route extends Model
 {
@@ -13,7 +13,7 @@ class Route extends Model
 
     public function permission()
     {
-        return $this->belongsTo('Puresolcom\Etherbase\App\Models\Permission');
+        return $this->belongsTo('Etherbase\App\Models\Permission');
     }
 //    /**
 //     * @return string
@@ -91,7 +91,7 @@ class Route extends Model
                         //                        'method'      => $method,
                         //                        'action_name' => $actionName,
                         //                    ])->first();
-                        $route = \Puresolcom\Etherbase\App\Models\Route::ofMethod($method)->ofActionName($actionName)->ofPath($path)->first();
+                        $route = \Etherbase\App\Models\Route::ofMethod($method)->ofActionName($actionName)->ofPath($path)->first();
 
                         if (!isset($route)) {
                             $cnt++;

@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Models;
+<?php namespace Etherbase\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class Audit extends Model
 
     public function user()
     {
-        return $this->belongsTo('Puresolcom\Etherbase\App\User');
+        return $this->belongsTo('Etherbase\App\User');
     }
 
 }

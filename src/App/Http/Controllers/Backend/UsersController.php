@@ -1,17 +1,17 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
+<?php namespace Etherbase\App\Http\Controllers\Backend;
 
-use Puresolcom\Etherbase\App\Http\Requests\CreateUserRequest;
-use Puresolcom\Etherbase\App\Http\Requests\UpdateUserRequest;
-use Puresolcom\Etherbase\App\Repositories\Criteria\User\UsersWhereFirstNameOrLastNameOrUsernameLike;
+use Etherbase\App\Http\Requests\CreateUserRequest;
+use Etherbase\App\Http\Requests\UpdateUserRequest;
+use Etherbase\App\Repositories\Criteria\User\UsersWhereFirstNameOrLastNameOrUsernameLike;
 use Illuminate\Http\Request;
-use Puresolcom\Etherbase\App\Repositories\Criteria\User\UsersWithRoles;
-use Puresolcom\Etherbase\App\Repositories\Criteria\User\UsersByUsernamesAscending;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Permission\PermissionsByNamesAscending;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Role\RolesByNamesAscending;
-use Puresolcom\Etherbase\App\Repositories\UserRepository as User;
-use Puresolcom\Etherbase\App\Repositories\PermissionRepository as Permission;
-use Puresolcom\Etherbase\App\Repositories\RoleRepository as Role;
-use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
+use Etherbase\App\Repositories\Criteria\User\UsersWithRoles;
+use Etherbase\App\Repositories\Criteria\User\UsersByUsernamesAscending;
+use Etherbase\App\Repositories\Criteria\Permission\PermissionsByNamesAscending;
+use Etherbase\App\Repositories\Criteria\Role\RolesByNamesAscending;
+use Etherbase\App\Repositories\UserRepository as User;
+use Etherbase\App\Repositories\PermissionRepository as Permission;
+use Etherbase\App\Repositories\RoleRepository as Role;
+use Etherbase\App\Repositories\AuditRepository as Audit;
 use Flash;
 use Auth;
 use DB;
@@ -76,7 +76,7 @@ class UsersController extends Controller {
         $page_title = trans('admin/users/general.page.show.title'); // "Admin | User | Show";
         $page_description = trans('admin/users/general.page.show.description', ['full_name' => $user->full_name]); // "Displaying user";
 
-//        $roleCollection = \Puresolcom\Etherbase\App\Models\Role::take(10)->get(['id', 'display_name'])->lists('display_name', 'id');
+//        $roleCollection = \Etherbase\App\Models\Role::take(10)->get(['id', 'display_name'])->lists('display_name', 'id');
 //        $roleList = [''=>''] + $roleCollection->all();
         $perms = $this->perm->pushCriteria(new PermissionsByNamesAscending())->all();
 
@@ -92,9 +92,9 @@ class UsersController extends Controller {
         $page_description = trans('admin/users/general.page.create.description'); // "Creating a new user";
 
         $perms = $this->perm->pushCriteria(new PermissionsByNamesAscending())->all();
-        $user = new \Puresolcom\Etherbase\App\User();
+        $user = new \Etherbase\App\User();
 //        $userRoles = $user->roles;
-//        $roleCollection = \Puresolcom\Etherbase\App\Models\Role::take(10)->get(['id', 'display_name'])->lists('display_name', 'id');
+//        $roleCollection = \Etherbase\App\Models\Role::take(10)->get(['id', 'display_name'])->lists('display_name', 'id');
 //        $roleList = [''=>''] + $roleCollection->all();
 
         return view('admin.users.create', compact('user', 'perms', 'page_title', 'page_description'));
@@ -145,7 +145,7 @@ class UsersController extends Controller {
 
         $roles = $this->role->pushCriteria(new RolesByNamesAscending())->all();
         $perms = $this->perm->pushCriteria(new PermissionsByNamesAscending())->all();
-//        $roleCollection = \Puresolcom\Etherbase\App\Models\Role::take(10)->get(['id', 'display_name'])->lists('display_name', 'id');
+//        $roleCollection = \Etherbase\App\Models\Role::take(10)->get(['id', 'display_name'])->lists('display_name', 'id');
 //        $roleList = [''=>''] + $roleCollection->all();
 
         return view('admin.users.edit', compact('user', 'roles', 'perms', 'page_title', 'page_description'));
@@ -158,13 +158,13 @@ class UsersController extends Controller {
         $rolesObj = [];
         $rolesNotFound = [];
 
-        $audit   = \Puresolcom\Etherbase\App\Models\Audit::find($id);
+        $audit   = \Etherbase\App\Models\Audit::find($id);
         $dataAtt = json_decode($audit->data, true);
 
         // Lookup and load the perms that we can still find, otherwise add to an separate array.
         if ($dataAtt['perms']) {
             foreach($dataAtt['perms'] as $id) {
-                $perm = \Puresolcom\Etherbase\App\Models\Permission::find($id);
+                $perm = \Etherbase\App\Models\Permission::find($id);
                 if ($perm) {
                     $permsObj[] = $perm;
                 }
@@ -180,7 +180,7 @@ class UsersController extends Controller {
         if ($dataAtt['selected_roles']) {
             $aRolesIDs = explode(",", $dataAtt['selected_roles']);
             foreach($aRolesIDs as $id) {
-                $role = \Puresolcom\Etherbase\App\Models\Role::find($id);
+                $role = \Etherbase\App\Models\Role::find($id);
                 if ($role) {
                     $rolesObj[] = $role;
                 }
@@ -273,7 +273,7 @@ class UsersController extends Controller {
         $replayAtt["id"] = $id;
         // Create log entry with replay data.
         $tmp = Audit::log( Auth::user()->id, trans('admin/users/general.audit-log.category'), trans('admin/users/general.audit-log.msg-update', ['username' => $user->username]),
-            $replayAtt, "Puresolcom\Etherbase\App\Http\Controllers\UsersController::ParseUpdateAuditLog", "admin.users.replay-edit" );
+            $replayAtt, "Etherbase\App\Http\Controllers\UsersController::ParseUpdateAuditLog", "admin.users.replay-edit" );
 
 
         if (!$user->isEditable())
@@ -477,7 +477,7 @@ class UsersController extends Controller {
         $skipNumb = $request->input('s');
         $takeNumb = $request->input('t');
 
-        $userCollection = \Puresolcom\Etherbase\App\User::skip($skipNumb)->take($takeNumb)
+        $userCollection = \Etherbase\App\User::skip($skipNumb)->take($takeNumb)
             ->get(['id', 'first_name', 'last_name', 'username'])
             ->lists('full_name_and_username', 'id');
         $userList = $userCollection->all();

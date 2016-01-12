@@ -1,17 +1,17 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Controllers\Auth;
+namespace Etherbase\App\Http\Controllers\Auth;
 
-use Puresolcom\Etherbase\App\User;
+use Etherbase\App\User;
 use Validator;
-use Puresolcom\Etherbase\App\Http\Controllers\Controller;
+use Etherbase\App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 
 use Auth;
 use Flash;
 
-use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
+use Etherbase\App\Repositories\AuditRepository as Audit;
 
 class AuthController extends Controller
 {

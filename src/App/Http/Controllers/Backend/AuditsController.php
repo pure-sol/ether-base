@@ -1,8 +1,8 @@
-<?php namespace Puresolcom\Etherbase\App\Http\Controllers\Backend;
+<?php namespace Etherbase\App\Http\Controllers\Backend;
 
-use Puresolcom\Etherbase\App\Repositories\AuditRepository as Audit;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Audit\AuditByCreatedDateDescending;
-use Puresolcom\Etherbase\App\Repositories\Criteria\Audit\AuditCreatedBefore;
+use Etherbase\App\Repositories\AuditRepository as Audit;
+use Etherbase\App\Repositories\Criteria\Audit\AuditByCreatedDateDescending;
+use Etherbase\App\Repositories\Criteria\Audit\AuditCreatedBefore;
 use Illuminate\Container\Container as App;
 use Auth;
 use Illuminate\Support\Facades\View;

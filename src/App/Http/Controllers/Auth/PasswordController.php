@@ -1,8 +1,8 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Http\Controllers\Auth;
+namespace Etherbase\App\Http\Controllers\Auth;
 
-use Puresolcom\Etherbase\App\Http\Controllers\Controller;
+use Etherbase\App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

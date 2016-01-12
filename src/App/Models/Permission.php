@@ -1,7 +1,7 @@
-<?php namespace Puresolcom\Etherbase\App\Models;
+<?php namespace Etherbase\App\Models;
 
 use Zizaco\Entrust\EntrustPermission;
-use Puresolcom\Etherbase\App\Traits\PermissionHasUsersTrait;
+use Etherbase\App\Traits\PermissionHasUsersTrait;
 
 class Permission extends EntrustPermission {
 
@@ -15,7 +15,7 @@ class Permission extends EntrustPermission {
 
     public function routes()
     {
-        return $this->hasMany('Puresolcom\Etherbase\App\Models\Route');
+        return $this->hasMany('Etherbase\App\Models\Route');
     }
 
     /**
@@ -130,7 +130,7 @@ class Permission extends EntrustPermission {
             $this->clearRouteAssociation();
 
             foreach($attributes['routes'] as $id) {
-                $route = \Puresolcom\Etherbase\App\Models\Route::find($id);
+                $route = \Etherbase\App\Models\Route::find($id);
                 $this->routes()->save($route);
             }
         } else {

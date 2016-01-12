@@ -1,4 +1,4 @@
-<?php namespace Puresolcom\Etherbase\App\Traits;
+<?php namespace Etherbase\App\Traits;
 
 use Illuminate\Support\Facades\Config;
 

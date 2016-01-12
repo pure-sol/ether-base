@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Providers;
+namespace Etherbase\App\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Puresolcom\Etherbase\App\Http\Controllers';
+    protected $namespace = 'Etherbase\App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

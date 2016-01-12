@@ -1,6 +1,6 @@
 <?php
 
-namespace Puresolcom\Etherbase\App\Console\Commands;
+namespace Etherbase\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
