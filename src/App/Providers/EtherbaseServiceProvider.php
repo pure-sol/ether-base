@@ -51,7 +51,7 @@ class EtherbaseServiceProvider extends ServiceProvider {
         }
 
         // Loading views
-        $this->loadViewsFrom(dirname(__DIR__) . '/resources/views', 'etherbase');
+        //$this->loadViewsFrom(dirname(__DIR__) . '/resources/views', 'etherbase');
     }
 
     /**
@@ -68,6 +68,8 @@ class EtherbaseServiceProvider extends ServiceProvider {
             \Laracasts\Flash\FlashServiceProvider::class,
             \YAAP\Theme\ThemeServiceProvider::class,
             \Zizaco\Entrust\EntrustServiceProvider::class,
+            \Etherbase\Core\Plugin\PluginServiceProvider::class,
+            \Etherbase\Core\Post\PostServiceProvider::class
         ];
 
         $aliases = [
@@ -76,6 +78,8 @@ class EtherbaseServiceProvider extends ServiceProvider {
             'Flash' => \Laracasts\Flash\Flash::class,
             'Theme' => \YAAP\Theme\Facades\Theme::class,
             'Entrust' => \Zizaco\Entrust\EntrustFacade::class,
+            'Plugin' => \Etherbase\Core\Plugin\PluginFacade::class,
+            'Post' => \Etherbase\Core\Post\PostFacade::class
         ];
 
         // Loading Package specific config files
