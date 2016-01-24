@@ -11,7 +11,7 @@ class PostServiceProvider extends ServiceProvider {
     }
 
     public function register() {
-        $this->app->bind('Post', function($app) {
+        $this->app->singleton('Post', function($app) {
             return new Post($app->make('Etherbase\App\Repositories\PostRepository'));
         });
     }

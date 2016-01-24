@@ -2,6 +2,8 @@
 
 namespace Etherbase\Core\Plugin;
 
+use \Option;
+
 /**
  * Plugins API
  *
@@ -9,7 +11,60 @@ namespace Etherbase\Core\Plugin;
  */
 class PluginAPI {
 
+    private $pluginsDir;
     protected $filter = [], $actions = [], $merged_filters = [], $current_filter = [];
+
+    public function __construct() {
+        $this->pluginsDir = base_path('plugins');
+    }
+
+    public function setPluginsDir($dir) {
+        $this->pluginsDir = $dir;
+    }
+
+    public function getPluginsDir() {
+        return $this->pluginsDir;
+    }
+
+    public function init() {
+        $plugins = $this->resolvePlugins();
+        $this->includePlugins($plugins);
+    }
+
+    private function resolvePlugins() {
+
+        $plugins = scandir($this->getPluginsDir());
+        if (FALSE !== $plugins) {
+            $lastModifiedDate = filemtime($this->getPluginsDir());
+
+            if ($lastModifiedDate == Option::getOption('plugins_dir_lmd')) {
+                return Option::getOption('plugins_cached_dir');
+            }
+
+            $plguins_dirs = array_slice($plugins, 2);
+
+
+            Option::updateOption('plugins_dir_lmd', $lastModifiedDate, true);
+            Option::updateOption('plugins_cached_dir', $plguins_dirs, true);
+
+            return $plguins_dirs;
+        }
+
+        return [];
+    }
+
+    private function includePlugins(array $plugins) {
+        if (count($plugins) > 0) {
+            foreach ($plugins as $plugin_dir_name) {
+
+                $plugin_file_name = $this->getPluginsDir() . DIRECTORY_SEPARATOR . $plugin_dir_name . DIRECTORY_SEPARATOR . $plugin_dir_name . '.php';
+
+                if (file_exists($plugin_file_name)) {
+                    require $plugin_file_name;
+                }
+            }
+        }
+    }
 
     /**
      * Hook a function or method to a specific filter action.

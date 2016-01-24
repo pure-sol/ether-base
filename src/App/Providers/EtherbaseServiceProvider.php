@@ -8,13 +8,13 @@ use Illuminate\Routing\Router;
 class EtherbaseServiceProvider extends ServiceProvider {
 
     protected $middleware = [
+        \Etherbase\Core\Plugin\Middleware\Plugin::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Etherbase\App\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \Etherbase\App\Http\Middleware\VerifyCsrfToken::class,
-        \Etherbase\App\Http\Middleware\ThemeSelector::class,
         \Etherbase\App\Http\Middleware\WalledGarden::class,
     ];
 
@@ -36,6 +36,7 @@ class EtherbaseServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot(\Illuminate\Routing\Router $router) {
+
         include dirname(__DIR__) . '/Http/routes.php';
 
 
@@ -69,7 +70,9 @@ class EtherbaseServiceProvider extends ServiceProvider {
             \YAAP\Theme\ThemeServiceProvider::class,
             \Zizaco\Entrust\EntrustServiceProvider::class,
             \Etherbase\Core\Plugin\PluginServiceProvider::class,
-            \Etherbase\Core\Post\PostServiceProvider::class
+            \Etherbase\Core\Option\OptionServiceProvider::class,
+            \Etherbase\Core\Post\PostServiceProvider::class,
+            \Etherbase\Core\Taxonomy\TaxonomyServiceProvider::class
         ];
 
         $aliases = [
@@ -79,15 +82,15 @@ class EtherbaseServiceProvider extends ServiceProvider {
             'Theme' => \YAAP\Theme\Facades\Theme::class,
             'Entrust' => \Zizaco\Entrust\EntrustFacade::class,
             'Plugin' => \Etherbase\Core\Plugin\PluginFacade::class,
-            'Post' => \Etherbase\Core\Post\PostFacade::class
+            'Option' => \Etherbase\Core\Option\OptionFacade::class,
+            'Post' => \Etherbase\Core\Post\PostFacade::class,
+            'Taxonomy' => \Etherbase\Core\Taxonomy\TaxonomyFacade::class
         ];
 
         // Loading Package specific config files
         $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/app.php', 'app');
         $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/entrust.php', 'entrust');
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/audit.php', 'audit');
         $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/auth.php', 'auth');
-        $this->mergeConfigFrom(dirname(dirname(__DIR__)) . '/config/theme.php', 'theme');
 
         foreach ($providers as $provider) {
             $this->app->register($provider);
@@ -96,6 +99,8 @@ class EtherbaseServiceProvider extends ServiceProvider {
         foreach ($aliases as $alias => $class) {
             \Illuminate\Foundation\AliasLoader::getInstance()->alias($alias, $class);
         }
+
+        require dirname(__DIR__) . '/Includes/Formatting.php';
     }
 
 }

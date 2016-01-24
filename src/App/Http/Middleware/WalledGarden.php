@@ -4,11 +4,10 @@ namespace Etherbase\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-
 use Log;
 
-class WalledGarden
-{
+class WalledGarden {
+
     /**
      * The Guard implementation.
      *
@@ -22,8 +21,7 @@ class WalledGarden
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth)
-    {
+    public function __construct(Guard $auth) {
         $this->auth = $auth;
     }
 
@@ -34,28 +32,26 @@ class WalledGarden
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
         $exempt = false;
 
         $walled_garden = env('WALLED_GARDEN', false);
 
         // TODO: Get these arrays from config.
         $exemptionPath = [
-            '/',                'home',                             'faust',
-            'auth/login',       'auth/register',
-            'password/email',   'password/reset',
-            '_debugbar/open',   '_debugbar/assets/stylesheets',    '_debugbar/assets/javascript',
+            '/', 'home', 'faust',
+            'auth/login', 'auth/register',
+            'password/email', 'password/reset',
+            '_debugbar/open', '_debugbar/assets/stylesheets', '_debugbar/assets/javascript',
         ];
         $exemptionsRegEx = [
             '/password\/reset\/.*/',
-                            ];
+        ];
 
         // Redirect to the login page if the user is not authenticated and the site
         // is configured as a walled garden, except if the request is going to a page
         // or route that is exempt from authentication.
-        if ( $walled_garden )
-        {
+        if ($walled_garden) {
             $authenticated = $this->auth->check();
             if (!$authenticated) {
                 $requestURI = $request->getUri();
@@ -84,4 +80,5 @@ class WalledGarden
         // Otherwise just continue on.
         return $next($request);
     }
+
 }
