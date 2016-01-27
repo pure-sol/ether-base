@@ -14,7 +14,7 @@ class HomeController extends Controller {
         $page_title = "Home";
         $page_description = "This is the home page";
 
-        return view('home', compact('page_title', 'page_description'));
+        return view('ether::backend.home', compact('page_title', 'page_description'));
     }
 
 }

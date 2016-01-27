@@ -51,8 +51,8 @@ class EtherbaseServiceProvider extends ServiceProvider {
             $router->middleware($key, $middleware);
         }
 
-        // Loading views
-        //$this->loadViewsFrom(dirname(__DIR__) . '/resources/views', 'etherbase');
+        //Loading views
+        $this->loadViewsFrom(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'resources/views', 'ether');
     }
 
     /**
@@ -67,7 +67,6 @@ class EtherbaseServiceProvider extends ServiceProvider {
         $providers = [
             \Collective\Html\HtmlServiceProvider::class,
             \Laracasts\Flash\FlashServiceProvider::class,
-            \YAAP\Theme\ThemeServiceProvider::class,
             \Zizaco\Entrust\EntrustServiceProvider::class,
             \Etherbase\Core\Plugin\PluginServiceProvider::class,
             \Etherbase\Core\Option\OptionServiceProvider::class,
