@@ -22,7 +22,6 @@ class EtherbaseServiceProvider extends ServiceProvider {
         'auth' => \Etherbase\App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Etherbase\App\Http\Middleware\RedirectIfAuthenticated::class,
-        'authorize' => \Etherbase\App\Http\Middleware\AuthorizeRoute::class,
     ];
 
     /**
@@ -47,7 +46,7 @@ class EtherbaseServiceProvider extends ServiceProvider {
         }
 
         //Loading views
-        $this->loadViewsFrom(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'resources/views', 'ether');
+        //$this->loadViewsFrom(dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'resources/views', 'etherbase');
     }
 
     /**
@@ -63,6 +62,7 @@ class EtherbaseServiceProvider extends ServiceProvider {
             \Collective\Html\HtmlServiceProvider::class,
             \Laracasts\Flash\FlashServiceProvider::class,
             \Zizaco\Entrust\EntrustServiceProvider::class,
+            \Stolz\Assets\Laravel\ServiceProvider::class,
             \Etherbase\Core\Plugin\PluginServiceProvider::class,
             \Etherbase\Core\Option\OptionServiceProvider::class,
             \Etherbase\Core\Post\PostServiceProvider::class,
