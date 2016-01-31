@@ -36,10 +36,10 @@ Route::group(['namespace' => 'Etherbase\App\Http\Controllers'], function() {
 
     Route::group(['namespace' => 'Backend'], function() {
 
+            Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 // Routes in this group must be authorized.
         Route::group(['middleware' => 'authorize'], function () {
             // Application routes...
-            Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
             // Site administration section
             Route::group(['prefix' => 'admin'], function () {

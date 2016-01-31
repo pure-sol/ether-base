@@ -7,34 +7,30 @@ use Validator;
 use Etherbase\App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
-
 use Auth;
 use Flash;
-
 use Etherbase\App\Repositories\AuditRepository as Audit;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
     /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Registration & Login Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles the registration of new users, as well as the
+      | authentication of existing users. By default, this controller uses
+      | a simple trait to add these behaviors. Why don't you explore it?
+      |
+     */
 
-    use AuthenticatesAndRegistersUsers;
+use AuthenticatesAndRegistersUsers;
 
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -44,14 +40,13 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
-            'first_name' => 'required|min:3|max:255',
-            'last_name' => 'required|min:3|max:255',
-            'username' => 'required|min:3|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+                    'first_name' => 'required|min:3|max:255',
+                    'last_name' => 'required|min:3|max:255',
+                    'username' => 'required|min:3|max:255',
+                    'email' => 'required|email|max:255|unique:users',
+                    'password' => 'required|confirmed|min:6',
         ]);
     }
 
@@ -61,14 +56,13 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         $user = User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'username' => $data['username'],
+                    'email' => $data['email'],
+                    'password' => bcrypt($data['password']),
         ]);
 
         Flash::success("Welcome" . $user->first_name . ", your user has been created");
@@ -82,8 +76,7 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Request $request)
-    {
+    public function postLogin(Request $request) {
 
         $this->validate($request, [
             'username' => 'required|min:3|max:255',
@@ -96,33 +89,21 @@ class AuthController extends Controller
 
             $user = Auth::user();
             // Allow only if user is root or enabled.
-            if ( ('root' == $user->username) || ($user->enabled) )
-            {
-                Audit::log(Auth::user()->id, trans('general.audit-log.category-login'), trans('general.audit-log.msg-login-success', ['username' => $user->username]));
-
+            if (('root' == $user->username) || ($user->enabled)) {
                 Flash::success("Welcome " . Auth::user()->first_name);
                 return redirect()->intended($this->redirectPath());
-            }
-            else
-            {
-                Audit::log(null, trans('general.audit-log.category-login'), trans('general.audit-log.msg-forcing-logout', ['username' => $credentials['username']]));
-
+            } else {
                 Auth::logout();
                 return redirect(route('login'))
-                    ->withInput($request->only('username', 'remember'))
-                    ->withErrors([
-                        'username' => trans('admin/users/general.error.login-failed-user-disabled'),
-                    ]);
+                                ->withInput($request->only('username', 'remember'))
+                                ->withErrors([
+                                    'username' => 'Unable to login using the login credentials provided',
+                ]);
             }
         }
-
-        Audit::log(null, trans('general.audit-log.category-login'), trans('general.audit-log.msg-login-failed', ['username' => $credentials['username']]));
-
         return redirect($this->loginPath())
-            ->withInput($request->only('username', 'remember'))
-            ->withErrors([
-                'username' => $this->getFailedLoginMessage(),
-            ]);
+                        ->withInput($request->only('username', 'remember'))
+                        ->withErrors($this->getFailedLoginMessage());
     }
 
     /**
@@ -130,8 +111,11 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLogin()
-    {
+    public function getLogin() {
+
+        if (null !== Auth::user())
+            return redirect()->intended($this->redirectPath());
+
         $page_title = "Login";
 
         return view('auth.login', compact('page_title'));
@@ -142,12 +126,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getRegister()
-    {
+    public function getRegister() {
         $page_title = "Register";
 
         return view('auth.register', compact('page_title'));
     }
-
 
 }

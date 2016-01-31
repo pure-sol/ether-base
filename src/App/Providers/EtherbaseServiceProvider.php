@@ -9,12 +9,7 @@ class EtherbaseServiceProvider extends ServiceProvider {
 
     protected $middleware = [
         \Etherbase\Core\Plugin\Middleware\Plugin::class,
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Etherbase\App\Http\Middleware\EncryptCookies::class,
-        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Etherbase\App\Http\Middleware\VerifyCsrfToken::class,
         \Etherbase\App\Http\Middleware\WalledGarden::class,
     ];
 

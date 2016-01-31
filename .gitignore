@@ -1,2 +1,4 @@
 /vendor/
 /nbproject/private/
+/storage/
+/resources/assets/bower_components/

@@ -33,27 +33,34 @@ class PluginAPI {
 
     private function resolvePlugins() {
 
-        $plugins = scandir($this->getPluginsDir());
-        if (FALSE !== $plugins) {
+        $plugins_dirs = array_diff(scandir($this->getPluginsDir(), SCANDIR_SORT_ASCENDING), array('.', '..'));
+        
+        if (FALSE !== $plugins_dirs) {
             $lastModifiedDate = filemtime($this->getPluginsDir());
 
             if ($lastModifiedDate == Option::getOption('plugins_dir_lmd')) {
-                return Option::getOption('plugins_cached_dir');
+                if (false !== Option::getOption('plugins_cached_dir')) {
+                    return Option::getOption('plugins_cached_dir');
+                }
             }
-
-            $plguins_dirs = array_slice($plugins, 2);
-
-
+            
             Option::updateOption('plugins_dir_lmd', $lastModifiedDate, true);
-            Option::updateOption('plugins_cached_dir', $plguins_dirs, true);
+            Option::updateOption('plugins_cached_dir', $plugins_dirs, true);
 
-            return $plguins_dirs;
+            return $plugins_dirs;
         }
 
         return [];
     }
 
-    private function includePlugins(array $plugins) {
+    private function includePlugins($plugins) {
+        
+        if (!is_array($plugins) || !is_object($plugins)) {
+            return false;
+        }
+        
+        $plugins = (array) $plugins;
+        
         if (count($plugins) > 0) {
             foreach ($plugins as $plugin_dir_name) {
 
